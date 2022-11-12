@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  Image,
   ImageBackground,
   SafeAreaView,
   ScrollView,
@@ -9,11 +10,14 @@ import {
   View,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import CustomSwitch from '../components/CustomSwitch';
 import Image1 from '../images/home/game-1.jpeg';
 import Image2 from '../images/home/game-2.jpeg';
 import Image3 from '../images/home/game-3.png';
+import {windowWidth} from '../utils/Dimensions';
 
 const HomeScreen = () => {
+  const [gamesTab, setGamesTab] = useState(1);
   const slides = [
     {
       id: 1,
@@ -31,6 +35,9 @@ const HomeScreen = () => {
   // const renderBanner = ({item, index}) => {
   //   return <BannerSlider data={item} />;
   // };
+  const onSelectSwitch = value => {
+    setGamesTab(value);
+  };
   return (
     <SafeAreaView
       style={{
@@ -88,6 +95,7 @@ const HomeScreen = () => {
             justifyContent: 'space-between',
             marginTop: 20,
             alignItems: 'center',
+            marginVertical: 15,
           }}>
           <Text
             style={{
@@ -105,6 +113,27 @@ const HomeScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
+        <View
+          style={{
+            width: windowWidth,
+            height: 150,
+            borderRadius: 10,
+          }}>
+          <Image
+            source={slides?.[0]?.image}
+            style={{height: 150, width: windowWidth, borderRadius: 10}}
+          />
+        </View>
+        <View style={{marginVertical: 20}}>
+          <CustomSwitch
+            selectionMode={1}
+            option1="Free to play"
+            option2="Paid games"
+            onSelectSwitch={onSelectSwitch}
+          />
+        </View>
+        {gamesTab == 1 && <Text>Tab 1</Text>}
+        {gamesTab == 2 && <Text>Tab 2</Text>}
       </ScrollView>
     </SafeAreaView>
   );

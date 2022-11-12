@@ -32,8 +32,8 @@ const OnboardingScreen = ({navigation}) => {
       </View>
       {/* creating button */}
       <TouchableOpacity
-        // onPress={() => navigation.navigate('HomeScreen')}
-        onPress={() => alert('Pressed')}
+        onPress={() => navigation.navigate('LoginScreen')}
+        // onPress={() => alert('Pressed')}
         style={{
           backgroundColor: '#ad40af',
           padding: 20,
